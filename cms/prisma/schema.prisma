@@ -1,0 +1,137 @@
+// Prisma schema for ICTHubs Content Engine
+// Provider: PostgreSQL (Supabase)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      Role     @default(WRITER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+  uploads   Media[]
+}
+
+enum Role {
+  SUPER_ADMIN
+  EDITOR
+  WRITER
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  featuredImg String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  posts       Post[]
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     PostTag[]
+}
+
+model Media {
+  id         String   @id @default(uuid())
+  filename   String
+  url        String
+  mimeType   String
+  size       Int
+  width      Int?
+  height     Int?
+  provider   String   @default("supabase") // storage provider key
+  createdAt  DateTime @default(now())
+  uploadedBy String?
+  uploader   User?    @relation(fields: [uploadedBy], references: [id])
+}
+
+model SEO {
+  id             String   @id @default(uuid())
+  title          String?
+  description    String?
+  keywords       String[]
+  ogImage        String?
+  canonicalUrl   String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  // optional one-to-one with Post
+  post   Post?   @relation(fields: [postId], references: [id])
+  postId String? @unique
+}
+
+model Post {
+  id            String     @id @default(uuid())
+  title         String
+  slug          String     @unique
+  excerpt       String?
+  content       Json       // Tiptap JSON
+  featuredImage String?
+  gallery       String[]
+  status        PostStatus @default(DRAFT)
+  authorId      String
+  author        User       @relation(fields: [authorId], references: [id])
+  categoryId    String?
+  category      Category?  @relation(fields: [categoryId], references: [id])
+  tags          PostTag[]
+  readingTime   Int        @default(0)
+  publishedAt   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  seo           SEO?
+  analytics     Analytics[]
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  UNPUBLISHED
+}
+
+model PostTag {
+  post   Post @relation(fields: [postId], references: [id])
+  postId String
+  tag    Tag  @relation(fields: [tagId], references: [id])
+  tagId  String
+
+  @@id([postId, tagId])
+}
+
+model Analytics {
+  id        String   @id @default(uuid())
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id])
+  views     Int      @default(0)
+  readTime  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id             String   @id @default(uuid())
+  siteName       String   @default("ICTHubs")
+  siteDescription String?
+  logoUrl        String?
+  socialLinks    Json?
+  seoDefaults    Json?
+  footer         Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

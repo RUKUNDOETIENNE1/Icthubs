@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact ICTHubs | Intelligence. Insight. Action.</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <script src="/js/enhancements.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta name="description" content="We build intelligence and execution systems that help people and organizations make better decisions and take effective action at scale.">
+  <meta property="og:title" content="Contact ICTHubs | Intelligence. Insight. Action.">
+  <meta property="og:description" content="Have a project in mind? We’re ready to bring it to life.">
+</head>
+<body>
+  <div id="header-container"></div>
+  <main>
+    <section class="section">
+      <div class="container contact-wrapper">
+        <div class="contact-info">
+          <h1>Let's talk</h1>
+          <p>Have a project in mind? We’re ready to bring it to life.</p>
+          <div class="contact-details">
+            <div><strong>📧 Email:</strong> hello@icthubs.com</div>
+            <div><strong>📞 Phone:</strong> +250 788 917126</div>
+            <div><strong>📍 Location:</strong> KN 74 St, Kigali, Rwanda</div>
+            <div><strong>🔗 Social:</strong> 
+              <a href="https://www.instagram.com/icthubs/" target="_blank" rel="noopener">Instagram</a> · 
+              <a href="https://www.facebook.com/icthubs" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </div>
+          <div class="office-hours">Mon–Fri: 9am – 5pm (CAT)</div>
+        </div>
+        <div class="contact-form-box">
+          <h2>Send a message</h2>
+          <form id="contact-form">
+            <div class="form-group"><input type="text" placeholder="Your name" id="contact-name" required></div>
+            <div class="form-group"><input type="email" placeholder="Email address" id="contact-email" required></div>
+            <div class="form-group"><textarea placeholder="How can we help?" rows="4" id="contact-msg" required></textarea></div>
+            <button type="submit" class="btn btn-primary">Send message</button>
+            <div id="contact-feedback" class="feedback"></div>
+          </form>
+          <p class="note">We'll get back to you within 1 business day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <h2>Visit Us</h2>
+          <p>Find us at our Kigali office</p>
+        </div>
+        <div class="map-container">
+          <div class="map-placeholder">
+            <iframe 
+              src="https://www.openstreetmap.org/export/embed.html?bbox=30.0585%2C-1.9595%2C30.0595%2C-1.9585&layer=mapnik&marker=-1.9590%2C30.0590" 
+              width="100%" 
+              height="400" 
+              style="border: 0; border-radius: 12px;" 
+              allowfullscreen 
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <div class="map-info">
+            <h3>ICTHubs Office</h3>
+            <p><strong>Address:</strong> KN 74 St, Kigali, Rwanda</p>
+            <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (CAT)</p>
+            <p><strong>Phone:</strong> +250 788 917126</p>
+            <p><strong>Email:</strong> hello@icthubs.com</p>
+            <div class="map-directions">
+              <a href="https://www.openstreetmap.org/directions?from=&to=KN%2074%20St,%20Kigali,%20Rwanda" target="_blank" rel="noopener" class="btn btn-outline">Get Directions →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-container"></div>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>

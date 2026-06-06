@@ -1,0 +1,35 @@
+// Prisma schema for Supabase (PostgreSQL)
+// Note: This is for migrations/DB tooling only. The site remains pure HTML/CSS/JS at runtime.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Booking {
+  id         BigInt   @id @default(autoincrement())
+  name       String
+  email      String
+  phone      String
+  service    String
+  message    String
+  created_at DateTime @default(now())
+
+  @@map("bookings")
+}
+
+model Post {
+  id         BigInt   @id @default(autoincrement())
+  title      String
+  excerpt    String?
+  content    String?
+  published  Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("posts")
+}

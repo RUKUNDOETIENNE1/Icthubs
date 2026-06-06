@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Service | Intelligence. Insight. Action.</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <script src="/js/enhancements.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta name="description" content="We build intelligence and execution systems that help people and organizations make better decisions and take effective action at scale.">
+<body>
+  <div id="header-container"></div>
+  <main>
+    <section class="section">
+      <div class="container form-container">
+        <h1>Book a Service</h1>
+        <p>Tell us about your project, and we'll get back to you within 24 hours.</p>
+        <form id="booking-form">
+          <div class="form-group">
+            <label for="name">Full name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="service">Service needed *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="Web Development">Web Development</option>
+              <option value="AI Solutions">AI Solutions</option>
+              <option value="Automation Systems">Automation Systems</option>
+              <option value="Business Dashboards">Business Dashboards</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Project details / message *</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Describe your idea, goals, or questions..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Submit booking request</button>
+          <div id="form-feedback" class="feedback"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <div id="footer-container"></div>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>
