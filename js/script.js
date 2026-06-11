@@ -9,15 +9,15 @@ function loadHeaderFooter() {
   const headerHtml = `
     <header class="site-header">
       <div class="container header-container">
-        <a href="/index.html" class="logo"><img src="/images/icthubs-logo.png" alt="ICTHubs logo" width="160" height="36" fetchpriority="high"></a>
+        <a href="/" class="logo"><img src="/images/icthubs-logo.png" alt="ICTHubs logo" width="160" height="36" fetchpriority="high"></a>
         <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
         <nav class="nav-links" id="navLinks">
-          <a href="/index.html">Home</a>
-          <a href="/about.html">About</a>
-          <a href="/services.html">Services</a>
-          <a href="/projects.html">Projects</a>
-          <a href="/booking.html">Book</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/services">Services</a>
+          <a href="/projects">Projects</a>
+          <a href="/booking">Book</a>
+          <a href="/contact">Contact</a>
         </nav>
       </div>
     </header>

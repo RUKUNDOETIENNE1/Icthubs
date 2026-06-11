@@ -28,12 +28,12 @@
       return;
     }
     const links = Array.from(nav.querySelectorAll('a'));
-    const hasBlog = links.some(a => (a.getAttribute('href') || '') === '/blog.html');
+    const hasBlog = links.some(a => (a.getAttribute('href') || '') === '/blog');
     if (!hasBlog) {
       const blogLink = document.createElement('a');
-      blogLink.href = '/blog.html';
+      blogLink.href = '/blog';
       blogLink.textContent = 'Blog';
-      const bookLink = links.find(a => (a.getAttribute('href') || '') === '/booking.html');
+      const bookLink = links.find(a => (a.getAttribute('href') || '') === '/booking');
       if (bookLink && bookLink.parentNode === nav) {
         nav.insertBefore(blogLink, bookLink);
       } else {
