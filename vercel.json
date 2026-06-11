@@ -26,6 +26,10 @@
     {
       "source": "/services",
       "destination": "/services.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
     }
   ],
   "headers": [

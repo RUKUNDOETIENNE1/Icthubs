@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | ICTHubs</title>
+  <link rel="canonical" href="https://icthubs.com/admin">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div id="login-section" class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <img src="/images/icthubs-logo.png" alt="ICTHubs logo" width="120" height="27">
+        <h1>Admin Panel</h1>
+        <p>Sign in to access the dashboard</p>
+      </div>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="admin@icthubs.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+      </form>
+      <div id="login-message" class="form-message"></div>
+    </div>
+  </div>
+
+  <div id="admin-panel" class="admin-panel hidden">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <img src="/images/icthubs-logo.png" alt="ICTHubs logo" width="120" height="27">
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="subscribers">
+          <span class="nav-icon">📧</span>
+          <span>Newsletter</span>
+        </button>
+        <button class="nav-item" data-tab="contacts">
+          <span class="nav-icon">💬</span>
+          <span>Contacts</span>
+        </button>
+        <button class="nav-item" data-tab="bookings">
+          <span class="nav-icon">📅</span>
+          <span>Bookings</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn" class="btn btn-outline btn-full">Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 id="page-title">Dashboard</h1>
+        <div class="admin-user">
+          <span id="user-email"></span>
+        </div>
+      </header>
+
+      <div id="dashboard-tab" class="tab-content active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📧</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-subscribers">0</div>
+              <div class="stat-label">Newsletter Subscribers</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-contacts">0</div>
+              <div class="stat-label">Contact Messages</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-info">
+              <div class="stat-value" id="stat-bookings">0</div>
+              <div class="stat-label">Booking Requests</div>
+            </div>
+          </div>
+        </div>
+        <div class="recent-activity">
+          <h2>Recent Activity</h2>
+          <div id="recent-activity-list" class="activity-list">
+            <p class="loading">Loading recent activity...</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="subscribers-tab" class="tab-content">
+        <div class="table-header">
+          <h2>Newsletter Subscribers</h2>
+          <button id="export-subscribers" class="btn btn-secondary">Export CSV</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Subscribed</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="subscribers-table">
+              <tr><td colspan="3" class="loading">Loading subscribers...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="contacts-tab" class="tab-content">
+        <div class="table-header">
+          <h2>Contact Messages</h2>
+          <button id="export-contacts" class="btn btn-secondary">Export CSV</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contacts-table">
+              <tr><td colspan="5" class="loading">Loading contacts...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="bookings-tab" class="tab-content">
+        <div class="table-header">
+          <h2>Booking Requests</h2>
+          <button id="export-bookings" class="btn btn-secondary">Export CSV</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-table">
+              <tr><td colspan="6" class="loading">Loading bookings...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Details</h2>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="/js/supabase-config.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
