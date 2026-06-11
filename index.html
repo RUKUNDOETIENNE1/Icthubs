@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/components.css">
   <script src="/js/enhancements.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <meta property="og:title" content="ICTHubs | Intelligence. Insight. Action.">
   <meta property="og:description" content="We build intelligence and execution systems that help people and organizations make better decisions and take effective action at scale.">
   <meta property="og:type" content="website">
@@ -231,9 +232,22 @@
       </div>
     </section>
 
-    <section class="cta-section"><div class="container cta-container"><h2>Ready to Build the Future?</h2><p>Partner with ICTHubs to unlock the power of intelligent systems, predictive insights, and scalable digital innovation. Together, we can transform information into action and create solutions that shape the future.</p><a href="/booking.html" class="btn btn-primary btn-large">Contact Us →</a></div></section>
+    <section class="cta-section"><div class="container cta-container"><h2>Ready to Build the Future?</h2><p>Partner with ICTHubs to unlock the power of intelligent systems, predictive insights, and scalable digital innovation. Together, we can transform information into action and create solutions that shape the future.</p><a href="/booking.html" class="btn btn-primary btn-large">Contact Us →</a></div>
+      
+      <div class="container newsletter-container">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for the latest insights on intelligent systems and digital innovation.</p>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <div id="newsletter-message" class="newsletter-message"></div>
+      </div>
+    </section>
   </main>
   <div id="footer-container"></div>
+  <script src="/js/supabase-config.js"></script>
+  <script src="/js/newsletter.js"></script>
   <script src="/js/script.js"></script>
 </body>
 </html>
